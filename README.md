@@ -4,6 +4,40 @@
 
 Overview
 ---
+This repository contains my implementation for Udacity SDCND project "Behavioral Cloning". The goals / steps of this project are the following:
+
+* Use the simulator to collect data of good driving behavior. Udacity has provided the image data of the car running the simulator.
+* Design, train and validate a convolutional neural network model that predicts a steering angle from image data.
+* Use the model to drive the vehicle autonomously around the first track in the simulator. The vehicle should remain on the road for an entire loop around the track.
+
+In the following sections, I will describe how each of the Rubric points were met.
+
+## Files submitted
+model.py : This file contains the neural network implementation.
+drive.py : This file contains the code to drive the car autonomously in the simulator based on the model.
+model.h5 : model file that contains the learned weights of the neural network.
+video.mp4 : Video of the car running in track1 of the simulator in autonomous mode.
+
+## Quality of Code
+
+### Is the code functional?
+I am able to drive the car autonomously in the Udacity simulator using the trained model successfully. video.mp4 contains a video of the car running in the simultaor autonomously
+
+### Is the code usable and readable?
+prepare_data.py file has the python code to unzip the Udacity provided data.zip file and copy the image files to /opt/ directory. model.py contains the code for data generator, NVIDIA neural network to train and save the model.
+
+Code is organized in to functions and comments are added to code.
+
+
+## Model Architecture and Training Strategy
+
+### Has an appropriate model architecture been employed for the task?
+
+
+
+
+
+
 This repository contains starting files for the Behavioral Cloning Project.
 
 In this project, you will use what you've learned about deep neural networks and convolutional neural networks to clone driving behavior. You will train, validate and test a model using Keras. The model will output a steering angle to an autonomous vehicle.
