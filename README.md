@@ -108,5 +108,8 @@ model.compile(loss='mse',optimizer='adam')
 
 Dropout layers have been added to reduce overfitting of the data.
 
+#### Autonomous navigation Video
+
+I was able to successfully navigate the car in the first track of simulator in autonomous mode. Video of the car running automously was generated using `video.py` utility. [Here](video.mp4) is the output video file created.
 
 
