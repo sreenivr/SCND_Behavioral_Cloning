@@ -14,31 +14,26 @@ This repository contains my implementation for Udacity SDCND project "Behavioral
 * Design, train and validate a convolutional neural network model that predicts a steering angle from image data.
 * Use the model to drive the vehicle autonomously around the first track in the simulator. The vehicle should remain on the road for an entire loop around the track.
 
-In the following sections, I will describe how each of the Rubric points were met.
-
 ### Files submitted
 
 * model.py : This file contains the neural network implementation.
-* drive.py : This file contains the code to drive the car autonomously in the simulator based on the model.
+* drive.py : This file contains the code to drive the car autonomously in the simulator based on the model. This file is provide by Udacity. I haven't made any changes to this file.
 * model.h5 : model file that contains the learned weights of the neural network.
-* video.mp4 : Video of the car running in track1 of the simulator in autonomous mode.
+* video.mp4 : Video of the car running in first track of the simulator in autonomous mode.
+* prepare_data.py : Unzip the Udacity provided data.zip file and copy the image files to /opt/ directory for training.
 
 ### Quality of Code
 
-#### Is the code functional?
 I am able to drive the car autonomously in the Udacity simulator using the trained model successfully. video.mp4 contains a video of the car running in the simultaor autonomously
 
-#### Is the code usable and readable?
-prepare_data.py file has the python code to unzip the Udacity provided data.zip file and copy the image files to /opt/ directory. model.py contains the code for data generator, NVIDIA neural network to train and save the model.
-
-Code is organized in to functions and comments are added to code.
+Code is organized in to functions and code is reasonably commented to make it readable.
 
 
 ### Model Architecture and Training Strategy
 
 #### Architecture
 
-My implementation of the CNN was based on NVIDIA convolutional neural network that was suggested in the Udacity project instructions. Details of the architecture can be found [here.](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) NVIDIA network has about 27 million connections and 250 thousand parameters. See the architecture of NVIDIA CNN below.
+My implementation of the CNN is based on NVIDIA convolutional neural network as suggested in the Udacity project instructions. Details of the architecture can be found [here.](http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf) NVIDIA network has about 27 million connections and 250 thousand parameters. See the architecture of NVIDIA CNN below.
 
 ![alt text][image1]
 
@@ -49,9 +44,9 @@ Input size of the above neural net is 66x200x3. The original images produced by 
 model.add(Cropping2D(cropping=((70,25),(0,0))))  
 ```
 
-This makes the size of the images to 65x320x3. I have decided use this input size to neural network.
+This makes the size of the images to 65x320x3. I have decided use this input size to first convolutional layer.
 
-I tried to generate my own training data by running the car in track-1 of the Udacity simulator. I found that controlling the car in the track and generating the data quite challenging. I found that the data provided by Udacity [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip) is reasonably good. So decided to try to train the network using the Udacity provided data and then generate my own data only if it is required later. 
+I tried to generate my own training data by running the car in first track of the Udacity simulator. I found that controlling the car in the track and generating the data quite challenging. I found that the data provided by Udacity [here](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/584f6edd_data/data.zip) is reasonably good. So decided to try to train the network using the Udacity provided data and then generate my own data only if it is required later. 
 
 #### Data Generator
 A `generator()` function was implemented in `model.py` to return the data in batches to the model during training to reduce the memory usage. This generator function shuffles the data so that the order in which images appear in the samples doesn't affect the neural network. Car in simulator has three cameras: center, left and right. Each record in the csv file contains these three camera snapshots and the corresponding steering angle. Since there is only one steering angle associated with three images, I have decided to apply a correction factor of 0.2. For left images, steering angle is increased by 0.2 and for right images, steering angle is decreased by 0.2.
@@ -59,7 +54,7 @@ A `generator()` function was implemented in `model.py` to return the data in bat
 #### Data Augmentation
 The data provided by Udacity is captured by running the car in Simulator Test mode and mostly turns towards left. So the model will have the bias to turn left. To overcome this limitation, augmented data is generated by flipping the data horizontally as suggested in the lessons. This is implemented in `generator()` in `model.py`. Image flipping is implemented using the OpenCV function `cv2.flip()`. Steering angle is multiplied by -1 for the flipped images.
 
-Another technique that was suggested in the lesson was to avoid left turn bias was to drive car in opposite direction in test track, but I haven't done it.
+Another technique suggested in the lesson to avoid left turn bias was to drive car in opposite direction in test track, but I haven't done it.
 
 
 #### Training and Validation data
