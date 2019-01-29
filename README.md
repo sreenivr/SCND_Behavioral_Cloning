@@ -5,6 +5,7 @@
 [//]: # (Image References)
 [image1]: ./examples/Nvidia.png "Nvidia Neural Net Acrhitecture"
 [image2]: ./examples/Final_architecture.png "Final Acrhitecture"
+[image3]: ./examples/center.jpg "Center camera image"
 
 Overview
 ---
